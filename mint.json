@@ -1,14 +1,10 @@
 {
   "$schema": "https://envsecrets.com/schema.json",
   "name": "envsecrets",
-  "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
-  },
   "favicon": "/favicon.png",
   "colors": {
     "primary": "#148BF2",
-    "light": "#AE87FF",
+    "light": "#148BF2",
     "dark": "#0D001D",
     "background": {
       "dark": "#090014"
@@ -18,24 +14,19 @@
       "to": "#9563FF"
     }
   },
-  "topbarLinks": [
-    {
-      "name": "Support",
-      "url": "mailto:wahal@envsecrets.com"
-    }
-  ],
+  "topbarLinks": [{
+    "name": "Support",
+    "url": "mailto:wahal@envsecrets.com"
+  }],
   "topbarCtaButton": {
     "name": "Dashboard",
     "url": "https://app.envsecrets.com"
   },
-  "tabs": [
-    {
-      "name": "API Reference",
-      "url": "api-reference"
-    }
-  ],
-  "anchors": [
-    {
+  "tabs": [{
+    "name": "API Reference",
+    "url": "api-reference"
+  }],
+  "anchors": [{
       "name": "Documentation",
       "icon": "book-open-cover",
       "url": "https://docs.envsecrets.com"
@@ -46,15 +37,40 @@
       "url": "https://discord.gg/4YaTFZ2xBA"
     },
     {
-      "name": "Discussions",
+      "name": "Ask Questions",
       "icon": "github",
       "url": "https://envsecrets.com"
     }
   ],
-  "navigation": [
-    {
+  "navigation": [{
       "group": "Get Started",
-      "pages": ["introduction", "quickstart", "development"]
+      "pages": ["introduction", "quickstart", {
+        "group": "Concepts",
+        "pages": ["concepts/secret", "concepts/version", "concepts/heirarchy"]
+      }]
+    },
+    {
+      "group": "Security",
+      "pages": ["security", "security/mfa", "security/access_control"]
+    },
+    {
+      "group": "Command Line",
+      "pages": ["cli/install", {
+        "group": "Commands",
+        "pages": [
+          "cli/commands/envs_login", 
+          "cli/commands/envs_logout", 
+          "cli/commands/envs_init",
+          "cli/commands/envs_get", 
+          "cli/commands/envs_set", 
+          "cli/commands/envs_list",
+          "cli/commands/envs_delete",
+          "cli/commands/envs_export",
+          "cli/commands/envs_run",
+          "cli/commands/envs_sync",
+          "cli/commands/envs_completion"
+        ]
+      }]
     },
     {
       "group": "Essentials",
@@ -74,9 +90,14 @@
       ]
     }
   ],
+  "feedback": {
+    "suggestEdit": true,
+    "raiseIssue": true
+  },
   "footerSocials": {
-    "twitter": "https://twitter.com/envsecrets",
+    "discord": "https://discord.gg/4YaTFZ2xBA",
     "github": "https://github.com/envsecrets/envsecrets",
+    "twitter": "https://twitter.com/envsecrets",
     "linkedin": "https://www.linkedin.com/company/envsecrets"
   }
 }

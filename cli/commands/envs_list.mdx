@@ -1,0 +1,26 @@
+---
+title: List
+description: List only the keys of all key-values available in your environment's secret.
+---
+
+```
+envs list [flags]
+```
+
+### Options
+
+```
+  -e, --env string    Remote environment to set the secrets in. Defaults to the local environment.
+  -h, --help          help for list
+  -v, --version int   Version of your secret (default -1)
+```
+
+### Usage
+
+Use the `--env` flag will get the secrets from your remote environment. Otherwise your local environment.
+
+### Options inherited from parent commands
+
+```
+  -d, --debug   Print debug logs
+```

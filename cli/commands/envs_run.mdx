@@ -1,0 +1,33 @@
+---
+title: Run
+description: Run a command with secrets injected directly into your process.
+---
+
+```
+envs run -- [command] [flags]
+```
+
+### Examples
+
+```
+envs run -- YOUR_COMMAND
+envs run --command "YOUR_COMMAND && YOUR_OTHER_COMMAND"
+```
+
+### Options
+
+```
+  -c, --command string   Command to run. Example: npm run dev
+  -e, --env string       Remote environment to set the secrets in. Defaults to the local environment.
+  -h, --help             help for run
+```
+
+### Usage
+
+Use the `--env` flag will get the secrets from your remote environment. Otherwise your local environment.
+
+### Options inherited from parent commands
+
+```
+  -d, --debug   Print debug logs
+```

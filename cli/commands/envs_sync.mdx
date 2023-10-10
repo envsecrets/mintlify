@@ -1,0 +1,31 @@
+---
+title: Sync
+description: Push your secrets to third-party services
+---
+
+### Synopsis
+
+This command decrypts your secrets on client side and pushes them to the chosen third-party service that is activated on that environment.
+For example, Github Actions, AWS Secrets Manager, etc.
+
+You can activate your connected integrations on the "integrations" page of your dashboard.
+
+```
+envs sync --env [your-remote-environment-name] [flags]
+```
+
+### Options
+
+```
+  -e, --env string        Remote environment to sync the secrets to.
+  -h, --help              help for sync
+  -p, --password string   Your envsecrets account password
+  -t, --type string       Type of integration to push secrets to
+  -v, --version int       Version of your secret; -1 for latest version (default -1)
+```
+
+### Options inherited from parent commands
+
+```
+  -d, --debug   Print debug logs
+```

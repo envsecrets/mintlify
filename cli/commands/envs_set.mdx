@@ -1,0 +1,31 @@
+---
+title: Set
+description: Set new key=value pairs.
+---
+
+```
+envs set KEY=VALUE [flags]
+```
+
+### Options
+
+```
+  -e, --env string    Remote environment to set the secrets in. Defaults to the local environment.
+  -f, --file string   Export secret key-values from a file {.env | .json | .yaml | .txt}
+  -h, --help          help for set
+```
+
+### Usage
+
+Use the `--env` flag will set the secrets in your remote environment. Otherwise your local environment.
+
+You can also load your variables directly from files: envs set --file .env
+
+NOTE: This command auto-capitalizes your keys.
+
+
+### Options inherited from parent commands
+
+```
+  -d, --debug   Print debug logs
+```

@@ -1,0 +1,29 @@
+---
+title: Export
+description: Prints decrypted list of your environment's (key=value) secret pairs.
+---
+
+```
+envs export [flags]
+```
+
+### Options
+
+```
+  -e, --env string     Remote environment to set the secrets in. Defaults to the local environment.
+  -f, --file string    Export secret key-values to a file {.json | .yaml | .txt}
+  -h, --help           help for export
+  -t, --token string   Environment Token
+  -v, --version int    Version of your secret (default -1)
+```
+
+### Usage
+
+- Use the `--env` flag will get the secrets from your remote environment. Otherwise your local environment.
+- If the `--token` flag is used, then values will only be fetched for the environment that token belongs to. Any value passed for `--env` flag will be ignored.
+
+### Options inherited from parent commands
+
+```
+  -d, --debug   Print debug logs
+```
