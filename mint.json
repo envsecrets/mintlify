@@ -73,6 +73,18 @@
       }]
     },
     {
+      "group": "Integrations",
+      "pages": [
+        "integrations/github",
+        "integrations/gitlab",
+        "integrations/asm",
+        "integrations/gsm",
+        "integrations/supabase",
+        "integrations/circleci",
+        "integrations/vercel"
+      ]
+    },
+    {
       "group": "Essentials",
       "pages": ["essentials/markdown", "essentials/code", "essentials/images", "essentials/settings", "essentials/navigation"]
     },

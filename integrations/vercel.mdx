@@ -1,0 +1,56 @@
+---
+title: Vercel
+description: How to continuously sync your secrets with your Vercel application.
+---
+
+## Setup
+
+- Go to [integrations catalog](https://app.envsecrets.com/integrations/catalog) in your envsecrets dashboard and choose "Vercel."
+- Complete the Oauth procedure that begins and grant access to all of your Vercel application to which you wish to sync your secrets. 
+
+## Activation
+
+1. Go to the [integrations](https://app.envsecrets.com/integrations) dashboard in your envsecrets organisation and under "Vercel" choose "Sync New Environment With Your Vercel Account."
+1. In the page that opens, select your envsecrets project, environment and your Vercel application where you wish to push/sync your secrets.
+1. Complete and save the form.
+
+## Usage
+
+### Platform
+
+1. Navigate to the environment for which you activated the integration.
+1. Click on the "Sync" button.
+1. Choose the Vercel application to which you want to sync your secrets.
+1. Approve the sync.
+
+### CLI
+
+1. Use the command: `envs sync --env [name-of-your-remote-environment]`
+1. Choose the Vercel integration.
+
+<Tip>
+
+Once your secrets are synced, it is recommended you go to your Vercel application and validate the new values.
+
+</Tip>
+
+### Reserved Environment Variables
+
+The following secrets/variables cannot be forward-synced to Vercel because they are reserved for Vercel's runtime:
+
+* AWS\_REGION
+* AWS\_DEFAULT\_REGION
+* AWS\_ACCESS\_KEY\_ID
+* AWS\_SECRET\_KEY
+* AWS\_SECRET\_ACCESS\_KEY
+* AWS\_EXECUTION\_ENV
+* AWS\_LAMBDA\_LOG\_GROUP\_NAME
+* AWS\_LAMBDA\_LOG\_STREAM\_NAME
+* AWS\_LAMBDA\_FUNCTION\_NAME
+* AWS\_LAMBDA\_FUNCTION\_MEMORY\_SIZE
+* AWS\_LAMBDA\_FUNCTION\_VERSION
+* AWS\_SESSION\_TOKEN
+* NOW\_REGION
+* TZ
+* LAMBDA\_TASK\_ROOT
+* LAMBDA\_RUNTIME\_DIR

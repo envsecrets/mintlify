@@ -1,0 +1,107 @@
+---
+title: GCP Secrets Manager
+description: How to continuously sync your secrets with Google Cloud Secrets Manager.
+---
+
+## Prerequisites
+
+* You have a [GCP account](https://console.cloud.google.com/) and are familiar with GCP Secret Manager
+* You have the [gcloud CLI](https://cloud.google.com/sdk/docs/install) installed and authenticated
+* You have [enabled the Secret Manager API](https://console.cloud.google.com/apis/library/secretmanager.googleapis.com) for your GCP project
+
+<Note>
+
+Ensure the gcloud CLI is configured to use the correct project, e.g. `gcloud config set project [your-project]` before proceeding.
+
+</Note>
+
+
+## Setup
+
+1.  **Create new IAM Service Account**
+
+
+
+    Run the following commands with the **gcloud** CLI.
+
+
+
+    ```bash
+    # To narrow permission scope use this prefix for envsecrets accessible secrets.
+    SECRET_PREFIX="envsecrets-";
+
+    # Get current project
+    PROJECT_ID="$(gcloud config get-value project --quiet)";
+
+    # Create a new Service Account
+    gcloud iam service-accounts create envsecrets \
+      --description="Service account for envsecrets to sync secrets to Secret Manager" \
+      --display-name="envsecrets";
+
+    # Attach SecretManagerAdmin policy to the new service account
+    gcloud projects add-iam-policy-binding $PROJECT_ID \
+      --member="serviceAccount:envsecrets@$PROJECT_ID.iam.gserviceaccount.com" \
+      --role="roles/secretmanager.admin" \
+      --condition="expression=resource.name.extract(\"secrets/{rest}\").startsWith(\"$SECRET_PREFIX\"),title=\"$SECRET_PREFIX*\"";
+
+    ```
+
+
+2.  **Create keys for the new service account**
+
+
+
+    ```bash
+    # Generate a key for your new service account
+    gcloud iam service-accounts keys create iam-key.json \
+      --iam-account="envsecrets@$PROJECT_ID.iam.gserviceaccount.com";
+
+    # Print (and then remove) the JSON credentials
+    cat iam-key.json && rm iam-key.json;
+    ```
+
+    &#x20;
+
+    Copy and save the keys printed on your shell.
+
+
+3. **Configuration**
+   1. Go to [integrations catalog](https://app.envsecrets.com/integrations/catalog) in your envsecrets dashboard and choose "GCP Secrets Manager."
+   2. On the setup/connection page, enter the service account keys you created above and save the form.
+
+<Info>
+
+We will enable "**Automatic Replication**" for your GCP secret by default. You can learn more about this from [GCP Secret Manager replication docs](https://cloud.google.com/secret-manager/docs/choosing-replication).
+
+</Info>
+
+## Activation
+
+1. Go to the [integrations](https://app.envsecrets.com/integrations) dashboard in your envsecrets organisation and under "GCP Secrets Manager" choose "Sync New Environment With Your GCP Secrets Manager Account."
+1. In the page that opens, select your envsecrets project, environment and enter the name with which you wish you save your secret in GCP Secrets Manager.
+1. Complete and save the form.
+
+## Usage
+
+### Platform
+
+1. Navigate to the environment for which you activated the integration.
+1. Click on the "Sync" button.
+1. Choose the GSM Secret to which you want to sync your secrets.
+1. Approve the sync.
+
+### CLI
+
+1. Use the command: `envs sync --env [name-of-your-remote-environment]`
+1. Choose the GSM integration.
+
+<Tip>
+
+Once your secrets are synced, it is recommended you go to your Gitlab repository and validate the new values.
+
+</Tip>
+<Warning>
+
+Every new version of your secret in envsecrets will create a new version of the existing secret in GCP Secrets Manager.
+
+</Warning>
