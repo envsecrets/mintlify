@@ -1,7 +1,7 @@
 {
   "$schema": "https://envsecrets.com/schema.json",
   "name": "envsecrets",
-  "favicon": "./favicon.svg",
+  "favicon": "./static/favicon.svg",
   "colors": {
     "primary": "#148BF2",
     "light": "#148BF2",
@@ -29,14 +29,19 @@
       "url": "https://docs.envsecrets.com"
     },
     {
+      "name": "Repository",
+      "icon": "github",
+      "url": "https://github.com/envsecrets/envsecrets"
+    },
+    {
       "name": "Community",
       "icon": "discord",
       "url": "https://discord.gg/4YaTFZ2xBA"
     },
     {
       "name": "Issues & Discussions",
-      "icon": "github",
-      "url": "https://envsecrets.com"
+      "icon": "code-pull-request",
+      "url": "https://github.com/orgs/envsecrets/discussions"
     }
   ],
   "navigation": [{

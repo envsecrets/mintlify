@@ -1,0 +1,24 @@
+<Accordion title="Example">
+Copy and save the following contents in a file called `test.sh`.
+
+```
+echo DB_PASSWORD=$DB_PASSWORD
+```
+
+Now inject your secrets in the process by running your script with the following command:
+
+  ```
+  envs run -- sh test.sh
+  ```
+
+  <Info>
+  If you get a permission error for your shell-script, just run: `chmod +x test.sh`
+  </Info>
+
+  This should ideally produce the following output:
+
+  ```
+  DB_PASSWORD=awesome
+  ```
+
+</Accordion>

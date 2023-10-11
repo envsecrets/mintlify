@@ -1,86 +1,153 @@
 ---
 title: 'Quickstart'
-description: 'Start building awesome documentation in under 5 minutes'
+description: 'Start managing and syncing your secrets in 4 minutes.'
 ---
 
-## Setup your development
+## Preprequisites
 
-Learn how to update your docs locally and and deploy them to the public.
+1. Signup for an [envsecrets account](https://app.envsecrets.com).
+2. [Install the CLI](cli/install).
 
-### Edit and preview
+## Setup
+
+Firstly, change directory to your project root.
+
+```
+cd my-project
+```
+
+## Local Environment
+
+In order to get comfortable, let's first run through all commands in your local environment before we go to remote environment.
+
+Run the following commands in correct order.
+
+<Steps>
+  <Step title="Set your secrets">
+  ```
+  envs set DB_PASSWORD=awesome
+  ```
+  This will set your key-value pair locally **without** encrypting the values.
+  </Step>
+  <Step title="List your secrets">
+  ```
+  envs ls
+  ```
+  This will list your locally saved key-value pairs and help you validate that your key-value pair indeed got set.
+  </Step>
+  <Step title="Get your secret">
+  ```
+  envs get DB_PASSWORD
+  ```
+  This will get the value of key `DB_PASSWORD` from locally saved key-value pairs.
+  </Step>
+  <Step title="Consume your secret">
+  ```
+  envs run -- [start-command-of-your-process]
+  ```
+
+<Snippet file="envs_run_example.mdx" />
+
+  This will fetch all the locally available values and inject them into your process.
+  You can now access your secrets natively in your code.
+  </Step>
+</Steps>
+
+## Remote Environment
+
+- To manage secrets in your remote/hosted environment, you can simply use the same aforementioned commands with `-e` or `--env`.
+- For the purpose of this tutorial, we will use the pre-initialized/default `prod` environment that is created for your every envsecrets project.
+
+<Steps>
+  <Step title="Login">
+  ```
+  envs login
+  ```
+
+  When prompted, enter your envsecrets account credentials i.e. email and password.
+  </Step>
+  <Step title="Initalize the project directory">
+  ```
+  envs init
+  ```
+
+  This command will ask you to choose your organisation, project and one of it's environments.
+
+  If you do not already have a project, you can create one directly from the CLI when prompted with the option.
+  </Step>
+  <Step title="Set your secrets">
+  ```
+  envs set DB_PASSWORD=awesome -e prod
+  ```
+  This will create a new version of your secret in your remote `prod` environment.
+  </Step>
+  <Step title="List your secrets">
+  ```
+  envs ls -e prod
+  ```
+  This will list the key-value pairs in the latest secret version of your remote `prod` environment and help you validate that your key-value pair indeed got set.
+  <Tip>
+  You can use the `--version` flag to modify which version to list the secrets for.
+  </Tip>
+  <Info>
+  If you want to export the values of all the keys and not just list the keys, use: `envs export`
+  </Info>
+  </Step>
+  <Step title="Get your secret">
+  ```
+  envs get DB_PASSWORD -e prod
+  ```
+  This will get the value for key `DB_PASSWORD` in the latest secret version of your remote `prod` environment.
+  <Tip>
+  You can use the `--version` flag to modify which version to get the value from.
+  </Tip>
+  </Step>
+  <Step title="Consume your secret">
+  ```
+  envs run -e prod -- [start-command-of-your-process]
+  ```
+
+<Snippet file="envs_run_example.mdx" />
+
+  This will fetch the key-value pairs in the latest secret version of your remote `prod` environment.
+  You can now access your secrets natively in your code.
+  <Tip>
+  You can use the `--version` flag to modify which version to get the values from.
+  </Tip>
+  </Step>
+</Steps>
+
+## Connect an Integration
+
+For the sake of this tutorial, let's connect the Github Actions integration.
+
+1. Go to [integrations catalog](https://app.envsecrets.com/integrations/catalog) in your envsecrets dashboard and choose "Github Actions."
+1. Complete the Oauth procedure that begins and grant access to all of your Github repositories to which you wish to sync your secrets. 
+1. Go to the [integrations](https://app.envsecrets.com/integrations) dashboard in your envsecrets organisation and under "Github Actions" choose "Sync New Environment With Your Github Actions Account."
+1. In the page that opens, select your envsecrets project, environment and your Github repository where you wish to push/sync your secrets.
+1. Complete and save the form.
+
+## Sync Your Secrets
 
 <AccordionGroup>
-  <Accordion icon="github" title="Clone your docs locally">
-    During the onboarding process, we created a repository on your Github with
-    your docs content. You can find this repository on our
-    [dashboard](https://dashboard.mintlify.com). To clone the repository
-    locally, follow these
-    [instructions](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository)
-    in your terminal.
-  </Accordion>
-  <Accordion icon="rectangle-terminal" title="Preview changes">
-    Previewing helps you make sure your changes look as intended. We built a
-    command line interface to render these changes locally. 1. Install the
-    [Mintlify CLI](https://www.npmjs.com/package/mintlify) to preview the
-    documentation changes locally with this command: ``` npm i -g mintlify ```
-    2. Run the following command at the root of your documentation (where
-    `mint.json` is): ``` mintlify dev ```
-  </Accordion>
-</AccordionGroup>
 
-### Deploy your changes
-
-<AccordionGroup>
-
-<Accordion icon="message-bot" title="Install our Github app">
-  Our Github app automatically deploys your changes to your docs site, so you
-  don't need to manage deployments yourself. You can find the link to install on
-  your [dashboard](https://dashboard.mintlify.com). Once the bot has been
-  successfully installed, there should be a check mark next to the commit hash
-  of the repo.
+<Accordion icon="laptop" title="From the UI">
+  1. Navigate to the environment for which you activated the integration.
+  1. Click on the "Sync" button.
+  1. Choose the Github repository to which you want to sync your secrets.
+  1. Approve the sync.
 </Accordion>
-<Accordion icon="rocket" title="Push your changes">
-  [Commit and push your changes to
-  Git](https://docs.github.com/en/get-started/using-git/pushing-commits-to-a-remote-repository#about-git-push)
-  for your changes to update in your docs site. If you push and don't see that
-  the Github app successfully deployed your changes, you can also manually
-  update your docs through our [dashboard](https://dashboard.mintlify.com).
+<Accordion icon="terminal" title="From the CLI">
+1. Use the command: `envs sync --env [name-of-your-remote-environment]`
+1. Choose the Gitlab integration.
 </Accordion>
 
 </AccordionGroup>
 
-## Update your docs
+<Tip>
 
-Add content directly in your files with MDX syntax and React components. You can use any of our components, or even build your own.
+Once your secrets are synced, it is recommended you go to your Github repository and validate the new values.
 
-<CardGroup>
+</Tip>
 
-<Card title="Style Your Docs" icon="paintbrush" href="/settings/global">
-  Add flair to your docs with personalized branding.
-</Card>
-
-<Card
-  title="Add API Endpoints"
-  icon="square-code"
-  href="/api-playground/configuration"
->
-  Implement your OpenAPI spec and enable API user interaction.
-</Card>
-
-<Card
-  title="Integrate Analytics"
-  icon="chart-mixed"
-  href="/analytics/supported-integrations"
->
-  Draw insights from user interactions with your documentation.
-</Card>
-
-<Card
-  title="Host on a Custom Domain"
-  icon="browser"
-  href="/settings/custom-domain/subdomain"
->
-  Keep your docs on your own website's subdomain.
-</Card>
-
-</CardGroup>
+Similarly, you can choose any native integration from our catalog of available integrations to keep your secrets synchronized everywhere in real-time.
