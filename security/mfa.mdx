@@ -1,4 +1,31 @@
 ---
 title: 'Multi-Factor Authentication'
-description: 'Enable Temporal One-Time Passwords to add an extra layer of security to your login.'
+description: 'Add an extra layer of security to your login.'
 ---
+
+### Brief about TOTPs
+
+Time-based one-time password (TOTP) is a computer algorithm that generates a one-time password (OTP) that uses the current time as a source of uniqueness. As an extension of the HMAC-based one-time password algorithm (HOTP), it has been adopted as Internet Engineering Task Force (IETF) standard RFC 6238.
+
+TOTP is the cornerstone of Initiative for Open Authentication (OATH), and is used in a number of two-factor authentication (2FA) systems.
+
+<Tip>
+You can read more about TOTPs [here](https://en.wikipedia.org/wiki/Time-based_one-time_password).
+</Tip>
+
+## Setup
+
+1. Login to your [dashboard](https://app.envsecrets.com).
+1. Navigate to your account security settings from the left pane/sidebar.
+1. In the card called "Multi-Factor Authentication" click "Generate QR."
+1. Scan the QR in your TOTP app. Like Google Authenticator or Authy.
+1. Enter your TOTP from the app after scanning the QR.
+1. Submit the form.
+
+<Success>
+Congraluations! MFA is enabled on your account.
+</Success>
+
+<Info>
+After enabling MFA, every client which authenticates with your envsecrets account will need the OTP from your MFA app. Including our CLI.
+</Info>

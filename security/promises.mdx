@@ -1,0 +1,32 @@
+---
+title: Promises
+description: We are ready to commit.
+---
+
+### End-to-End Encryption
+
+- Every user is issued a fresh RSA key pair which can only be decrypted from their account password. And the password is, of course, kept hashed in the database.
+- Every organisation is issued an unique AES 256-bit symmetric key, which is used to encrypt it's secrets.
+- Secrets are kept encrypted both at rest and in transit.
+
+<Tip>
+Read a detailed description of our implementation of end-to-end encryption in the [data model](/security/model).
+</Tip>
+
+### Zero-Knowledge Architecture
+
+- No one can see/decrypt your secrets. Not even us.
+- All cryptographic operations i.e. encrypting and decrypting secrets, happen **only** on client side. Never on server side.
+
+### Open Source Codebase
+
+We keep our entire [repository](https://github.com/envsecrets/envsecrets), containing server-side code, public under Apache-2 license.
+This is to comfort you about our confidence and invite you to scan the codebase for potential vulnerabilities. Or even monkey-business.
+
+## Statement
+
+We are seriously committed to providing the best-in-class security and privacy of all our users' data. However, it is important to acknowledge that no system is perfectly secure.
+
+While being passionately committed to protect the privacy and confidentiality of our users' secrets, we take all measures within our capacity to fix vulnerabilities in our system, continously strive to increase trust amongst the engineering and developer community vis-a-vis our platform and operations.
+
+If something breaks unintentionally, we take due measures to notify the users and keep updating them until the issue is resolved. Users are also constantly advised to not hesitate in reaching out to us, either on [mail](mailto:wahal@envsecrets.com) or our [community server](https://discord.gg/zaDG5xJd9N), in case something goes wrong.
