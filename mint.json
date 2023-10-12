@@ -84,6 +84,7 @@
         "integrations/supabase",
         "integrations/circleci",
         "integrations/railway",
+        "integrations/hasura",
         "integrations/vercel"
       ]
     }

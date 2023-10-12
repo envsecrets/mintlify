@@ -1,0 +1,49 @@
+---
+title: Hasura Cloud
+description: How to continuously sync your secrets with Hasura.
+---
+
+## Setup
+
+1. **Generate your Personal Access Token**
+   1. Go to [your Hasura account settings](https://cloud.hasura.io/account-settings/access-tokens) and create a new Personal Access Token.
+   2. Copy the newly generated token somewhere safe because it will **not** be shown to you again.
+2. **Configuration**
+   1. Go to [integrations catalog](https://app.envsecrets.com/integrations/catalog) in your envsecrets dashboard and choose "Hasura Cloud."
+   2. On the setup/connection page, enter your Hasura Personal Access Token you created above and save the configuration.
+
+## Activation
+
+1. Go to the [integrations](https://app.envsecrets.com/integrations) dashboard in your envsecrets organisation and under "Hasura Cloud" choose "Sync New Environment With Your Hasura Account."
+1. In the page that opens, select your envsecrets project, environment and your Hasura project and environment where you wish to push/sync your secrets.
+1. Complete and save the form.
+
+## Usage
+
+### Platform
+
+1. Navigate to the environment for which you activated the integration.
+1. Click on the "Sync" button.
+1. Choose the Hasura project to which you want to sync your secrets.
+1. Approve the sync.
+
+### CLI
+
+1. Use the command: `envs sync --env [name-of-your-remote-environment]`
+1. Choose the Hasura integration.
+
+<Tip>
+
+Once your secrets are synced, it is recommended you go to your Hasura project and validate the new values.
+
+</Tip>
+
+### Reserved Environment Variables
+
+The following secrets/variables cannot be forward-synced to Hasura Cloud because they are reserved for Hasura's internal requirements:
+
+- HASURA_GRAPHQL_ADMIN_SECRET
+- HASURA_GRAPHQL_CORS_DOMAIN
+- HASURA_GRAPHQL_DISABLE_CORS
+- HASURA_GRAPHQL_ENABLE_CONSOLE
+- HASURA_GRAPHQL_WS_READ_COOKIE
