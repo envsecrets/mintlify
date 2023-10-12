@@ -1,0 +1,51 @@
+---
+title: Railway
+description: How to continuously sync your secrets with Railway.
+---
+
+## Setup
+
+1. **Generate your Personal Access Token**
+   1. Go to [your Railway account settings](https://railway.app/account/tokens) and create a new API token.
+   2. Copy the newly generated token somewhere safe because it will **not** be shown to you again.
+2. **Configuration**
+   1. Go to [integrations catalog](https://app.envsecrets.com/integrations/catalog) in your envsecrets dashboard and choose "Railway."
+   2. On the setup/connection page, enter your Railway API token you created above and save the configuration.
+
+## Activation
+
+1. Go to the [integrations](https://app.envsecrets.com/integrations) dashboard in your envsecrets organisation and under "Railway" choose "Sync New Environment With Your Railway Account."
+1. In the page that opens, select your envsecrets project, environment and your Railway project and environment where you wish to push/sync your secrets.
+1. Complete and save the form.
+
+## Usage
+
+### Platform
+
+1. Navigate to the environment for which you activated the integration.
+1. Click on the "Sync" button.
+1. Choose the Railway project to which you want to sync your secrets.
+1. Approve the sync.
+
+### CLI
+
+1. Use the command: `envs sync --env [name-of-your-remote-environment]`
+1. Choose the Railway integration.
+
+<Tip>
+
+Once your secrets are synced, it is recommended you go to your Railway project and validate the new values.
+
+</Tip>
+
+### Reserved Environment Variables
+
+If you are configuring envsecrets to sync with a specific Railway service and **not** create shared variables in your Railway environment, please note that the following keys cannot be used or synced to Railway because they are reserved for Railway's internal requirements:
+
+- RAILWAY_PROJECT_NAME
+- RAILWAY_ENVIRONMENT_NAME
+- RAILWAY_SERVICE_NAME
+- RAILWAY_PROJECT_ID
+- RAILWAY_ENVIRONMENT_ID
+- RAILWAY_SERVICE_ID
+- RAILWAY_ENVIRONMENT

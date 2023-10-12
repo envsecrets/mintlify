@@ -83,6 +83,7 @@
         "integrations/gsm",
         "integrations/supabase",
         "integrations/circleci",
+        "integrations/railway",
         "integrations/vercel"
       ]
     }
