@@ -85,6 +85,7 @@
         "integrations/circleci",
         "integrations/railway",
         "integrations/hasura",
+        "integrations/nhost",
         "integrations/vercel"
       ]
     }
