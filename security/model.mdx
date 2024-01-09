@@ -45,6 +45,9 @@ This new "protection" key is in turn protected with your account password using 
 * This keep the secrets protected in-transit.
 
 <Info>
+
 This "syncing" key is only used to encrypt the secrets in-transit for the external-syncing method to work.
+
 The server doest **not** store the secrets with itself after having decrypted them. This is a completely stateless operation and can be validated by auditing the source code.
+
 </Info>
