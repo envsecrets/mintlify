@@ -1,5 +1,4 @@
 {
-  "$schema": "https://envsecrets.com/schema.json",
   "name": "envsecrets",
   "favicon": "./static/favicon.svg",
   "colors": {
