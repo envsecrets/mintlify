@@ -34,3 +34,17 @@ This new "protection" key is in turn protected with your account password using 
 
 * When a member does `envs set KEY=value` from the CLI, their locally stored copy of the organisation's key is first decrypted using their private key, then the secret **value** is encrypted with the decrypted key. This key-value pair is then uploaded on our servers.
 * Vice versa, when they do `envs get KEY`, the encrypted secret value is downloaded from our servers and decrypted using the locally stored copy of organisation's encryption key.
+
+### External-Syncing
+
+* At the time of signup, every user is issued a unique 32 byte symmetric "syncing key." This key is visible and available to the server.
+* When a user decides to sync their secrets forward to third-party services, the server encrypts the user's unique "syncing" key with their public key and sends it to the user.
+* The user decrypts the received encrypted copy of their key using their locally available private key to obtain the original "syncing" key.
+* The user then encrypts their secrets with this "syncing" key and sends them to the server.
+* The server, which already have access to this "syncing" key, uses it to decrypt the secrets and pushes them to forward to third-party service APIs.
+* This keep the secrets protected in-transit.
+
+<Info>
+This "syncing" key is only used to encrypt the secrets in-transit for the external-syncing method to work.
+The server doest **not** store the secrets with itself after having decrypted them. This is a completely stateless operation and can be validated by auditing the source code.
+</Info>
